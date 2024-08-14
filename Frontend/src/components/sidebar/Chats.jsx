@@ -3,7 +3,7 @@ import useConversation from "../../storeZustand/useConversation"
 const Chats = ({ conversation, lastInd }) => {
 const {selectedConversation, setSelectedConversation} = useConversation()
 
-const isSelected = selectedConversation ?._id === conversation._id;
+const isSelected = selectedConversation?._id === conversation._id;
 
   return (
     <>
