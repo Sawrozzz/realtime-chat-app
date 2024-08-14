@@ -8,7 +8,7 @@ export const sendMessage = async (req, res) => {
     const senderId = req.user._id;
 
     let conversation = await Conversation.findOne({
-      participants: { $all: [senderId, receiverId] },
+      participants: {$all: [senderId, receiverId] },
     });
 
     if (!conversation) {
@@ -47,9 +47,13 @@ export const getMessage = async (req, res) => {
       participants: { $all: [senderId, userToChatWith] },
     }).populate("messages");
 
+    if (!conversation) {
+      return res.status(200).json([]);
+    }
+
     const messages = conversation.messages;
 
-    res.status(200).json(conversation.messages);
+    res.status(200).json(messages);
     if (!conversation) {
       res.status(200).json(messages);
     }
