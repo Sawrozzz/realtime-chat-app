@@ -1,25 +1,34 @@
-import React from 'react'
+import useConversation from "../../storeZustand/useConversation";
+import { useAuthContext } from "../../context/AuthContext";
+import { extractTime } from "../../../utils/extractTIme";
 
-
-const Message = () => {
+const Message = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const { selectedConversation } = useConversation();
+  const FromMe = message.senderId === authUser._id;
+  const chatClassName = FromMe ? "chat-end" : "chat-start";
+  const bubbleBgCol = FromMe ? "bg-blue-400" : "bg-gray-300";
+  const formattedTime = extractTime(message.createdAt);
+  const profilePic = FromMe
+    ? authUser.profilePic
+    : selectedConversation.profilePic;
   return (
-    <div className="chat chat-end">
+    <div className={`chat ${chatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img
-            alt="bubble"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-          />
+          <img alt="bubble" src={profilePic} />
         </div>
       </div>
-      <div className={`chat-bubble text-white bg-blue-400`}>Hey whats app</div>
+      <div className={`chat-bubble text-white bg-blue-400 ${bubbleBgCol} `}>
+       {message.message}
+      </div>
       <div
         className={` chat-footer opacity-50 text-xs flex gap-1 items-center`}
       >
-        10:35
+       {formattedTime}
       </div>
     </div>
   );
 };
 
-export default Message
+export default Message;
