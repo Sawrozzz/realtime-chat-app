@@ -12,16 +12,21 @@ const isOnline = onlineUsers.includes(conversation._id);
 
   return (
     <>
-      <div className={`flex gap-2 items-center rounded p-2 py-1 cursor-pointer  border-zinc-600 hover:bg-slate-500 
-      ${isSelected ? 'bg-slate-500' : ''}
+      <div
+        className={`flex gap-2 items-center rounded p-2 py-1 cursor-pointer  border-zinc-600 hover:bg-slate-500 
+      ${isSelected ? "bg-slate-500" : ""}
       `}
-      onClick={()=> setSelectedConversation(conversation)}
+        onClick={() => setSelectedConversation(conversation)}
       >
         <div className={`avatar ${isOnline ? "online" : " "}`}>
           <div className="w-12 rounded-full">
             <img
-            src={conversation.profilePic}
-            alt="user avatar"
+              src={conversation.profilePic}
+              alt="user avatar"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "./logo.webp";
+              }}
             />
           </div>
         </div>
@@ -31,7 +36,7 @@ const isOnline = onlineUsers.includes(conversation._id);
           </div>
         </div>
       </div>
-       {!lastInd && <div className="divider my-0 py-0 h-1" /> }
+      {!lastInd && <div className="divider my-0 py-0 h-1" />}
     </>
   );
 };
