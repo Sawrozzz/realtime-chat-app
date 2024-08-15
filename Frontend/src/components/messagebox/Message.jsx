@@ -20,12 +20,12 @@ const Message = ({ message }) => {
         </div>
       </div>
       <div className={`chat-bubble text-white bg-blue-400 ${bubbleBgCol} `}>
-       {message.message}
+        {message.message}
       </div>
       <div
         className={` chat-footer opacity-50 text-xs flex gap-1 items-center`}
       >
-       {formattedTime}
+        {formattedTime}
       </div>
     </div>
   );
