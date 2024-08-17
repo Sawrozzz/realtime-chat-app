@@ -28,16 +28,16 @@ const SearchBar = () => {
 
   return (
     <>
-      <form className="flex flex-col gap-4 mb-4" onSubmit={handleSubmit}>
-        <label className="input input-bordered flex items-center gap-2">
+      <form className="flex flex-col mb-2" onSubmit={handleSubmit}>
+        <label className="input input-bordered flex items-center gap-2 ">
           <input
             type="text"
-            className="grow"
+            className="grow w-full sm:w-auto "
             placeholder="Search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button type="submit" className="">
+          <button type="submit">
             <IoIosSearch height={35} width={35} />
           </button>
         </label>
