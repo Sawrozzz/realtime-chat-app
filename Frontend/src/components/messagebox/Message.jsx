@@ -16,7 +16,14 @@ const Message = ({ message }) => {
     <div className={`chat ${chatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img alt="bubble" src={profilePic} />
+          <img
+            src={profilePic}
+            alt="user"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "./logo.webp";
+            }}
+          />
         </div>
       </div>
       <div className={`chat-bubble text-white bg-blue-400 ${bubbleBgCol} `}>
